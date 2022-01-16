@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <NavBar/>
     <v-main>
       <v-container>
         <Nuxt />
@@ -15,3 +16,8 @@ export default {
   },
 };
 </script>
+<style>
+.v-card__text{
+  padding-bottom: 0;
+}
+</style>
