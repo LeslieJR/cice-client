@@ -31,3 +31,12 @@ export const signIn = async (email, password) => {
   });
   return res.json();
 };
+
+export const getProducts = async () =>{
+  const res = await fetch(`${HOSTNAME}/api/product/all`);
+  return res.json();
+}
+
+export const createProduct = async (image, name, description) =>{
+  
+}
