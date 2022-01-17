@@ -5,12 +5,16 @@
       <input id="file" ref="file" type="file" @change="onChange" />
     </v-list-item>
     <v-list-item>
-         <v-select
-         hide-details="auto"
-          :items="categories"
-          label="Select category"
-          solo
-        ></v-select>
+      <v-select
+        hide-details="auto"
+        :items="categories"
+        item-text="name"
+        item-value="_id"
+        label="Select category"
+        solo
+        v-model="selected"
+        @change="onSelect"
+      ></v-select>
     </v-list-item>
     <v-list-item>
       <v-text-field
@@ -48,52 +52,74 @@
   </v-card>
 </template>
 <script>
+import { getAllCategories, createProduct } from "../services";
 export default {
   data() {
     return {
-      url: [],
+      image: "",
       name: "",
       description: "",
       price: "",
-      categories:['Home','Kitchen','Self-care']
+      categories: [],
+      category:"",
+      selected: "",
     };
   },
+  async created() {
+    await this.getAllCategories();
+  },
   methods: {
-    onChange() {
-      //document.getElementeById("file") <=> this.$refs.file
-      const files = this.$refs.file.files;
-      files.forEach((file) => {
-        //para codificar el archivo
-        //https://developer.mozilla.org/en-US/docs/Web/API/FileReader
-        const reader = new FileReader();
-        //si hay un archivo
-        if (file) {
-          reader.readAsDataURL(file);
+    //to get the list of categories to populate the select options
+    async getAllCategories() {
+      try {
+        const data = await getAllCategories();
+        const categories = data;
+        const names = [];
+        for (var i = 0; i < categories.length; i++) {
+          const categoryObj = {
+            name: categories[i].name,
+            _id: categories[i]._id,
+          };
+          names.push(categoryObj);
         }
-        reader.onloadend = () => {
-          this.url.push(reader.result);
-        };
-      });
+        this.categories = names;
+      } catch (e) {
+        console.log("error: ", e.message);
+      }
+    },
+    onChange() {
+      const file = this.$refs.file.files[0];
+      //para codificar el archivo:
+      const reader = new FileReader();
+      //si hay un archivo
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+      reader.onloadend = () => {
+        this.image = reader.result;
+      };
+    },
+    onSelect(obj) {
+      this.category = obj;
     },
     async onClick() {
       try {
-        const body = JSON.stringify({
-          name: this.name,
-          description: this.description,
-          price: this.price,
-          images: this.url,
-        });
-
-        const res = await fetch("http://localhost:4400/api/product/create", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body,
-        });
-        const data = await res.json();
-        console.log(data)
-        (this.name = ""), (this.description = ""), (this.url = []), (this.price="");
+        const data = await createProduct(
+          this.name,
+          this.description,
+          this.category,
+          this.price,
+          this.image
+        );
+        if (data.err) {
+          alert(data.err);
+        } else {
+          this.name = "";
+          this.description = "";
+          this.category = "";
+          this.price = "";
+          this.image = "";
+        }
       } catch (e) {
         console.log("error: ", e.message);
       }

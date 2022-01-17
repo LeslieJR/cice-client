@@ -4,6 +4,7 @@
       <v-col :cols="cols" v-for="product in products" :key="product.id">
         <v-card>
           <!--@click="details(product._id)"-->
+          <v-img :src=product.image></v-img>
           <v-card-text>
             {{ product.name }}
           </v-card-text>

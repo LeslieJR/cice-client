@@ -130,7 +130,7 @@
 
 export default {
   <script>
-import { signIn } from "../services";
+import { signIn, signUp } from "../services";
 export default {
   data() {
     return {
