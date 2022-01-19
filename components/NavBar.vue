@@ -189,6 +189,7 @@ export default {
       }
     },
     logout(){
+      //to do
       console.log('logout')
     }
   },

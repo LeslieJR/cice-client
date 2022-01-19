@@ -4,8 +4,21 @@
       <v-col :cols="cols" v-for="product in products" :key="product.id">
         <v-card>
           <!--@click="details(product._id)"-->
-          <v-img :src=product.image></v-img>
-          <v-card-text>
+          <!--<v-img :src=product.images></v-img>-->
+          <v-carousel
+            height="200"
+            hide-delimiter-background
+            show-arrows-on-hover
+          >
+            <v-carousel-item
+              v-for="(img, i) in product.images"
+              :key="i"
+              :src="img"
+              reverse-transition="fade-transition"
+              transition="fade-transition"
+            ></v-carousel-item>
+          </v-carousel>
+          <v-card-text class="card-text">
             {{ product.name }}
           </v-card-text>
           <!-- <v-img :src="product.image"  aspect-ratio="1"/> -->
@@ -51,8 +64,9 @@ export default {
       try {
         const data = await getProducts();
         this.products = data;
-        console.log(data);
-      } catch (err) {}
+      } catch (err) {
+
+      }
     },
     /*details(productId) {
       this.$router.push(`/details/${productId}`)
@@ -60,3 +74,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+.card-text{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 1rem;
+}
+</style>

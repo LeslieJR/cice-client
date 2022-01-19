@@ -2,7 +2,7 @@
   <v-card>
     <!-- <v-img :src="url" class="width-100"></v-img> -->
     <v-list-item>
-      <input id="file" ref="file" type="file" @change="onChange" />
+      <input id="file" ref="file" type="file" @change="upload" multiple />
     </v-list-item>
     <v-list-item>
       <v-select
@@ -56,12 +56,12 @@ import { getAllCategories, createProduct } from "../services";
 export default {
   data() {
     return {
-      image: "",
+      images: [],
       name: "",
       description: "",
       price: "",
       categories: [],
-      category:"",
+      category: "",
       selected: "",
     };
   },
@@ -87,7 +87,7 @@ export default {
         console.log("error: ", e.message);
       }
     },
-    onChange() {
+    /* onChange() {
       const file = this.$refs.file.files[0];
       //para codificar el archivo:
       const reader = new FileReader();
@@ -98,6 +98,19 @@ export default {
       reader.onloadend = () => {
         this.image = reader.result;
       };
+    }, */
+    async upload() {
+      // Convert the FileList into an array and iterate
+      let files = Array.from(this.$refs.file.files);
+      files.map((file) => {
+        // Define a new file reader
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          this.images.push(reader.result);
+        };
+      });
+      console.log(JSON.stringify(this.images));
     },
     onSelect(obj) {
       this.category = obj;
@@ -109,7 +122,7 @@ export default {
           this.description,
           this.category,
           this.price,
-          this.image
+          this.images
         );
         if (data.err) {
           alert(data.err);
@@ -118,7 +131,8 @@ export default {
           this.description = "";
           this.category = "";
           this.price = "";
-          this.image = "";
+          this.images = [];
+          this.$refs.file.value=null;
         }
       } catch (e) {
         console.log("error: ", e.message);
@@ -126,7 +140,7 @@ export default {
     },
   },
 };
-</script>
+</script> 
 <style scoped>
 .t-form {
   display: grid;
@@ -134,6 +148,9 @@ export default {
   row-gap: 5px;
   background: #feca57;
   padding: 10px;
+}
+.v-card__actions{
+  padding-right: 18px;
 }
 </style>
 

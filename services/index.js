@@ -37,15 +37,14 @@ export const getProducts = async () =>{
   return res.json();
 }
 
-export const createProduct = async (name, description, category, price, image) =>{
+export const createProduct = async (name, description, category, price, images) =>{
     const body = {
         name,
         description,
         category,
         price,
-        image
+        images
       };
-      console.log(JSON.stringify(body))
       const res = await fetch(`${HOSTNAME}/api/product/create`, {
         method: "post",
         headers: {
