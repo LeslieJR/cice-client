@@ -1,6 +1,5 @@
 <template>
   <v-card>
-    <!-- <v-img :src="url" class="width-100"></v-img> -->
     <v-list-item>
       <input id="file" ref="file" type="file" @change="upload" multiple />
     </v-list-item>
@@ -87,30 +86,21 @@ export default {
         console.log("error: ", e.message);
       }
     },
-    /* onChange() {
-      const file = this.$refs.file.files[0];
-      //para codificar el archivo:
-      const reader = new FileReader();
-      //si hay un archivo
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-      reader.onloadend = () => {
-        this.image = reader.result;
-      };
-    }, */
     async upload() {
-      // Convert the FileList into an array and iterate
-      let files = Array.from(this.$refs.file.files);
-      files.map((file) => {
-        // Define a new file reader
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          this.images.push(reader.result);
-        };
-      });
-      console.log(JSON.stringify(this.images));
+      try {
+        // Convert files into an array and iterate
+        let files = Array.from(this.$refs.file.files);
+        files.map((file) => {
+          // iterate to read as data url
+          let reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = () => {
+            this.images.push(reader.result);
+          };
+        });
+      } catch (e) {
+        console.log("error: ", e.message);
+      }
     },
     onSelect(obj) {
       this.category = obj;
@@ -132,7 +122,7 @@ export default {
           this.category = "";
           this.price = "";
           this.images = [];
-          this.$refs.file.value=null;
+          this.$refs.file.value = null;
         }
       } catch (e) {
         console.log("error: ", e.message);
@@ -149,7 +139,7 @@ export default {
   background: #feca57;
   padding: 10px;
 }
-.v-card__actions{
+.v-card__actions {
   padding-right: 18px;
 }
 </style>

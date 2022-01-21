@@ -2,9 +2,7 @@
   <v-app>
     <NavBar/>
     <v-main>
-      <v-container>
-        <Nuxt />
-      </v-container>
+      <Nuxt />
     </v-main>
     <Footer/>
   </v-app>

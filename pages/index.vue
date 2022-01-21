@@ -1,5 +1,12 @@
 <template>
   <div>
-    <h1>Hello Nuxt</h1>
+    <h1>Index</h1>
   </div>
 </template>
+<script>
+export default {
+  asyncData(ctx) {
+    ctx.redirect("/home");
+  },
+};
+</script>
