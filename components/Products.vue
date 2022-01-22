@@ -1,10 +1,9 @@
 <template>
   <div class="products" v-if="this.products.length > 0">
+    <h2>Most Recent Products</h2>
     <v-row class="pt-1 pb-1">
       <v-col :cols="cols" v-for="product in products" :key="product.id">
-        <v-card>
-          <!--@click="details(product._id)"-->
-          <!--<v-img :src=product.images></v-img>-->
+        <v-card @click="details(product._id)">
           <v-carousel
             height="200"
             hide-delimiter-background
@@ -21,7 +20,6 @@
           <v-card-text class="card-text">
             {{ product.name }}
           </v-card-text>
-          <!-- <v-img :src="product.image"  aspect-ratio="1"/> -->
         </v-card>
       </v-col>
     </v-row>
@@ -68,16 +66,21 @@ export default {
 
       }
     },
-    /*details(productId) {
+    details(productId) {
       this.$router.push(`/details/${productId}`)
-    },*/
+    },
   },
 };
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 .card-text{
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 1rem;
+}
+h2{
+  font-size: 2rem;
+  font-family: 'Courgette', cursive;
 }
 </style>

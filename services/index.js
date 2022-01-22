@@ -59,3 +59,12 @@ export const getAllCategories = async() => {
     const res = await fetch(`${HOSTNAME}/api/category/all`);
     return res.json()
 }
+
+export const getDetails = async(product_id) =>{
+  const res = await fetch(`${HOSTNAME}/api/product/details/${product_id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
+  return res.json();
+}
