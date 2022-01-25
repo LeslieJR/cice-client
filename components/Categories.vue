@@ -9,13 +9,12 @@
           :key="index"
           @click="browse(category._id)"
         >
-          <v-card>
-            <!-- <v-img
-              src="https://images.pexels.com/photos/7655830/pexels-photo-7655830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-            > -->
+          <v-card :style="{ 'border-top': `3px solid ${category.color}` }" >
+            <v-img
+            >
               <v-card-title class="text-h5"> {{ category.name }} </v-card-title>
               <v-card-subtitle>{{ category.description }}</v-card-subtitle>
-            <!-- </v-img> -->
+            </v-img>
           </v-card>
         </v-col>
       </v-row>
@@ -38,18 +37,7 @@ export default {
     async getAllCategories() {
       try {
         const data = await getAllCategories();
-        const categories = data;
-        const names = [];
-        for (var i = 0; i < categories.length; i++) {
-          const categoryObj = {
-            name: categories[i].name,
-            _id: categories[i]._id,
-            description: categories[i].description,
-          };
-          names.push(categoryObj);
-        }
-        this.categories = names;
-        console.log(this.categories);
+        this.categories = data;
       } catch (e) {
         console.log("error: ", e.message);
       }
@@ -66,4 +54,5 @@ h2 {
   font-size: 2rem;
   font-family: "Courgette", cursive;
 }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar">
-    <v-app-bar color="blue-grey darken-1">
+    <v-app-bar color="teal darken-1">
       <v-toolbar-title>
         <v-btn to="/home" plain class="white--text">Ecos</v-btn>
       </v-toolbar-title>

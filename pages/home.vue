@@ -21,9 +21,11 @@
       </p>
       <v-divider></v-divider>
       <Products class="mb-4 mt-4" />
+      <v-divider></v-divider>
       <NewProduct v-if="isAuth" />
       <Categories />
     </div>
+    
   </div>
 </template>
 <script>

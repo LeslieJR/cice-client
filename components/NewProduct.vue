@@ -1,7 +1,9 @@
 <template>
+<div class="mb-2">
+  <h2>Create New Product</h2>
   <v-card>
     <v-list-item>
-      <input id="file" ref="file" type="file" @change="upload" multiple />
+      <v-file-input id="file" ref="file" type="file" @change="upload" multiple ></v-file-input>
     </v-list-item>
     <v-list-item>
       <v-select
@@ -49,6 +51,9 @@
       <v-btn class="white--text" color="indigo" @click="onClick">Submit</v-btn>
     </v-card-actions>
   </v-card>
+  <v-divider></v-divider>
+</div>
+  
 </template>
 <script>
 import { getAllCategories, createProduct } from "../services";
@@ -132,6 +137,7 @@ export default {
 };
 </script> 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
 .t-form {
   display: grid;
   grid-template-columns: 1fr;
@@ -142,6 +148,12 @@ export default {
 .v-card__actions {
   padding-right: 18px;
 }
+h2 {
+  font-size: 2rem;
+  font-family: "Courgette", cursive;
+}
+
+
 </style>
 
 
