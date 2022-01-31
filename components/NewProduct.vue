@@ -1,59 +1,67 @@
 <template>
-<div class="mb-2">
-  <h2>Create New Product</h2>
-  <v-card>
-    <v-list-item>
-      <v-file-input id="file" ref="file" type="file" @change="upload" multiple ></v-file-input>
-    </v-list-item>
-    <v-list-item>
-      <v-select
-        hide-details="auto"
-        :items="categories"
-        item-text="name"
-        item-value="_id"
-        label="Select category"
-        solo
-        v-model="selected"
-        @change="onSelect"
-      ></v-select>
-    </v-list-item>
-    <v-list-item>
-      <v-text-field
-        solo
-        dense
-        clearable
-        hide-details="auto"
-        placeholder="Product's name"
-        v-model="name"
-      />
-    </v-list-item>
-    <v-list-item>
-      <v-text-field
-        solo
-        dense
-        clearable
-        hide-details="auto"
-        placeholder="Description"
-        v-model="description"
-      />
-    </v-list-item>
-    <v-list-item>
-      <v-text-field
-        solo
-        dense
-        clearable
-        hide-details="auto"
-        placeholder="Price"
-        v-model="price"
-      />
-    </v-list-item>
-    <v-card-actions class="d-flex justify-center">
-      <v-btn class="white--text" color="indigo" @click="onClick">Submit</v-btn>
-    </v-card-actions>
-  </v-card>
-  <v-divider></v-divider>
-</div>
-  
+  <div class="mb-2">
+    <h2>Create New Product</h2>
+    <v-card>
+      <v-list-item>
+        <v-file-input
+          id="file"
+          ref="file"
+          type="file"
+          @change="upload"
+          multiple
+        >
+        </v-file-input>
+      </v-list-item>
+      <v-list-item>
+        <v-select
+          hide-details="auto"
+          :items="categories"
+          item-text="name"
+          item-value="_id"
+          label="Select category"
+          solo
+          v-model="selected"
+          @change="onSelect"
+        ></v-select>
+      </v-list-item>
+      <v-list-item>
+        <v-text-field
+          solo
+          dense
+          clearable
+          hide-details="auto"
+          placeholder="Product's name"
+          v-model="name"
+        />
+      </v-list-item>
+      <v-list-item>
+        <v-text-field
+          solo
+          dense
+          clearable
+          hide-details="auto"
+          placeholder="Description"
+          v-model="description"
+        />
+      </v-list-item>
+      <v-list-item>
+        <v-text-field
+          solo
+          dense
+          clearable
+          hide-details="auto"
+          placeholder="Price"
+          v-model="price"
+        />
+      </v-list-item>
+      <v-card-actions class="d-flex justify-center">
+        <v-btn class="white--text" color="indigo" @click="onClick"
+          >Submit</v-btn
+        >
+      </v-card-actions>
+    </v-card>
+    <v-divider></v-divider>
+  </div>
 </template>
 <script>
 import { getAllCategories, createProduct } from "../services";
@@ -135,7 +143,7 @@ export default {
     },
   },
 };
-</script> 
+</script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
 .t-form {
@@ -152,10 +160,7 @@ h2 {
   font-size: 2rem;
   font-family: "Courgette", cursive;
 }
-
-
 </style>
-
 
 <!--<template>
   <div class="create-product">

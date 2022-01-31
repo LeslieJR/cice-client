@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <div>
       <h1 style="text-align: center">We are Ecos</h1>
       <v-img
@@ -9,7 +9,7 @@
       />
     </div>
     <div class="container">
-      <p>
+      <p style="background-color: white">
         The solid and essential foundation of this project is
         <strong>sustainability</strong> and more specifically the zero waste
         movement, minimalism, slow life, fashion, design, personal care, and
@@ -25,7 +25,6 @@
       <NewProduct v-if="isAuth" />
       <Categories />
     </div>
-    
   </div>
 </template>
 <script>
@@ -44,7 +43,10 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Neonderthaw&display=swap");
-
+.home {
+  background: url("~@/assets/patternpad.png");
+  background-position: repeat;
+}
 h1 {
   font-size: 4rem;
   text-align: center;
