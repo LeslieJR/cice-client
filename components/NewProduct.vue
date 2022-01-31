@@ -35,14 +35,16 @@
         />
       </v-list-item>
       <v-list-item>
-        <v-text-field
-          solo
-          dense
-          clearable
-          hide-details="auto"
-          placeholder="Description"
-          v-model="description"
-        />
+        <v-textarea
+        clearable
+        auto-grow
+        solo
+        rows="1"
+        clear-icon="mdi-close-circle"
+        label="Description"
+        v-model="description"
+        hide-details
+        ></v-textarea>
       </v-list-item>
       <v-list-item>
         <v-text-field
@@ -55,7 +57,7 @@
         />
       </v-list-item>
       <v-card-actions class="d-flex justify-center">
-        <v-btn class="white--text" color="indigo" @click="onClick"
+        <v-btn class="white--text" color="#45D47D" @click="onClick"
           >Submit</v-btn
         >
       </v-card-actions>
@@ -107,6 +109,7 @@ export default {
           // iterate to read as data url
           let reader = new FileReader();
           reader.readAsDataURL(file);
+          console.log(reader)
           reader.onloadend = () => {
             this.images.push(reader.result);
           };
@@ -161,75 +164,3 @@ h2 {
   font-family: "Courgette", cursive;
 }
 </style>
-
-<!--<template>
-  <div class="create-product">
-   
-      <div class="create-container">
-        <v-card-text>
-           <v-file-input
-            outlined
-            prepend-icon=""
-            label="Image"
-            append-icon="mdi-file-upload"
-            v-model="image"
-          ></v-file-input> 
-
-          <v-text-field
-            outlined
-            name="Name"
-            placeholder="Product's name"
-            v-model="name"
-          ></v-text-field>
-
-          <v-textarea
-            outlined
-            name="description"
-            placeholder="Product Description"
-            hide-details="auto"
-            v-model="description"
-          ></v-textarea>
-        </v-card-text>
-        <v-card-actions class="d-flex justify-end pr-4">
-          <v-btn class="white--text" @click="onSubmit"
-            >Submit</v-btn
-          >
-        </v-card-actions>
-      </div>
-
-  </div>
-</template>
-<script>
-import {createProduct} from '../services'
-export default {
-  data() {
-    return {
-      image: undefined,
-      name: "",
-      description: "",
-    };
-  },
-  methods: {
-    async onSubmit() {
-      try {
-        if (!this.image || !this.name || !this.description) {
-          alert("REQUIRED FIELD EMPTY");
-          return;
-        }
-        //const token = localStorage.getItem("token");
-        const data = await createProduct(this.image, this.name, this.description)      
-        if (data.err) {
-          alert(data.err);
-        } else{
-          this.image = undefined
-          this.name=""
-          this.description=""
-        }
-      } catch (err) {
-        alert(err.message);
-      }
-    },
-  },
-};
-</script>
--->

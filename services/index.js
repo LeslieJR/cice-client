@@ -51,6 +51,7 @@ export const createProduct = async (
     price,
     images,
   };
+  console.log(body.images)
   const res = await fetch(`${HOSTNAME}/api/product/create`, {
     method: "post",
     headers: {
@@ -79,6 +80,16 @@ export const getDetails = async (product_id) => {
   const res = await fetch(`${HOSTNAME}/api/product/details/${product_id}`, {
     headers: {
       "Content-Type": "application/json",
+    },
+  });
+  return res.json();
+};
+
+export const deleteProduct = async (product_id) => {
+  const res = await fetch(`${HOSTNAME}/api/product/remove/${product_id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
     },
   });
   return res.json();

@@ -3,7 +3,12 @@
     <h2>Most Recent Products</h2>
     <v-row class="pt-1 pb-1">
       <v-col :cols="cols" v-for="product in products" :key="product.id">
-        <v-card @click="details(product._id)">
+        <v-card>
+          <v-btn v-if="isAuth" fab small color="red" class="white--text btn-delete" @click="remove(product._id)">
+            <v-icon>   
+              {{ icons.mdiDelete }} 
+            </v-icon>
+          </v-btn>
           <v-carousel
             height="200"
             hide-delimiter-background
@@ -15,9 +20,10 @@
               :src="img"
               reverse-transition="fade-transition"
               transition="fade-transition"
+              @click="details(product._id)"
             ></v-carousel-item>
           </v-carousel>
-          <v-card-text class="card-text">
+          <v-card-text class="card-text" @click="details(product._id)">
             {{ product.name }}
           </v-card-text>
         </v-card>
@@ -26,10 +32,13 @@
   </div>
 </template>
 <script>
-import { getProducts } from "../services";
+import { getProducts, deleteProduct } from "../services";
+import {mdiDelete,} from '@mdi/js'
 export default {
+  
   data() {
     return {
+      icons: {mdiDelete},
       products: [],
       onFetch: undefined,
     };
@@ -44,6 +53,11 @@ export default {
     clearInterval(this.onFetch);
   },
   computed: {
+    //only users who are logged in (have token) can delete products
+    isAuth() {
+      return this.$store.getters["user/getToken"];
+    },
+  
     cols() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
@@ -62,25 +76,34 @@ export default {
       try {
         const data = await getProducts();
         this.products = data;
-      } catch (err) {
-
-      }
+      } catch (err) {}
     },
     details(productId) {
-      this.$router.push(`/details/${productId}`)
+      this.$router.push(`/details/${productId}`);
     },
+    async remove(productId){
+      console.log(productId);
+      await deleteProduct(productId)
+    }
   },
 };
 </script>
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
-.card-text{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 1rem;
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+.card-text {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 1rem;
 }
-h2{
+h2 {
   font-size: 2rem;
-  font-family: 'Courgette', cursive;
+  font-family: "Courgette", cursive;
 }
+.btn-delete{
+    position: absolute;
+    z-index: 9999;
+    right: 0;
+
+}
+
 </style>
