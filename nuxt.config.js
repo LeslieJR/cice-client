@@ -38,6 +38,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'vue-sweetalert2/nuxt'
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
