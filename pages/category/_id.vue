@@ -2,8 +2,8 @@
   <div class="ml-4 mr-4">
     <h1 class="text-center">{{ data.name }}</h1>
     <p>{{ data.description }}</p>
-    <v-row class="pt-1 pb-1 justify-center">
-      <v-cols v-for="(product, i) in data.products" :key="i">
+    <v-row class="pt-1 pb-1">
+      <v-col class="d-flex justify-center" v-for="(product, i) in data.products" :key="i">
         <v-card width="300"  class="mb-2">
           <v-card-title class="card-text">
             {{ product.name }}
@@ -22,7 +22,7 @@
             ></v-carousel-item>
           </v-carousel>
         </v-card>
-      </v-cols>
+      </v-col>
     </v-row>
   </div>
 </template>

@@ -51,7 +51,6 @@ export const createProduct = async (
     price,
     images,
   };
-  console.log(body.images)
   const res = await fetch(`${HOSTNAME}/api/product/create`, {
     method: "post",
     headers: {

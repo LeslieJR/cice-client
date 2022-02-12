@@ -7,7 +7,7 @@
           id="file"
           ref="file"
           type="file"
-          @change="upload"
+          v-model="myFiles"
           multiple
         >
         </v-file-input>
@@ -77,6 +77,7 @@ export default {
       categories: [],
       category: "",
       selected: "",
+      myFiles: [],
     };
   },
   async created() {
@@ -101,15 +102,14 @@ export default {
         console.log("error: ", e.message);
       }
     },
-    async upload() {
+    async upload(value) {
       try {
         // Convert files into an array and iterate
-        let files = Array.from(this.$refs.file.files);
+        let files = value;
         files.map((file) => {
           // iterate to read as data url
           let reader = new FileReader();
           reader.readAsDataURL(file);
-          console.log(reader)
           reader.onloadend = () => {
             this.images.push(reader.result);
           };
@@ -143,6 +143,11 @@ export default {
       } catch (e) {
         console.log("error: ", e.message);
       }
+    },
+  },
+  watch: {
+    myFiles(value) {
+      this.upload(value);
     },
   },
 };
