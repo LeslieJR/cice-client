@@ -31,7 +31,7 @@ export const signIn = async (email, password) => {
   });
   return res.json();
 };
-
+//PRODUCTS
 export const getProducts = async () => {
   const res = await fetch(`${HOSTNAME}/api/product/recents`);
   return res.json();
@@ -58,11 +58,6 @@ export const createProduct = async (
     },
     body: JSON.stringify(body),
   });
-  return res.json();
-};
-
-export const getAllCategories = async () => {
-  const res = await fetch(`${HOSTNAME}/api/category/all`);
   return res.json();
 };
 
@@ -93,3 +88,10 @@ export const deleteProduct = async (product_id) => {
   });
   return res.json();
 };
+
+//CATEGORIES
+export const getAllCategories = async () => {
+  const res = await fetch(`${HOSTNAME}/api/category/all`);
+  return res.json();
+};
+
