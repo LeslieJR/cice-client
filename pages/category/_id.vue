@@ -1,6 +1,6 @@
 <template>
   <div class="ml-4 mr-4">
-    <h1 class="text-center">{{ data.name }}</h1>
+    <h2 class="text-center">{{ data.name }}</h2>
     <p>{{ data.description }}</p>
     <v-row class="pt-1 pb-1">
       <v-col class="d-flex justify-center" v-for="(product, i) in data.products" :key="i">
@@ -39,3 +39,9 @@ export default {
   
 };
 </script>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+h2 {
+  font-family: 'Kanit', sans-serif;
+}
+</style> 

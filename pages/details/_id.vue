@@ -1,6 +1,6 @@
 <template>
   <div class="ml-4 mr-4">
-    <h1 class="pt-2 pb-2 text-center">{{ product.name }}</h1>
+    <h2 class="pt-2 pb-2 text-center">{{ product.name }}</h2>
     <v-row class="justify-center">
       <v-col cols="6" sm="4" v-for="(image, i) in product.images" :key="i">
         <v-img cover :height="height" :src="image"></v-img>
@@ -39,3 +39,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+h2 {
+  font-family: 'Kanit', sans-serif;
+}
+</style> 

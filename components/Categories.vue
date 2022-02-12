@@ -49,10 +49,10 @@ export default {
 };
 </script> 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
 h2 {
   font-size: 2rem;
-  font-family: "Courgette", cursive;
+  font-family: 'Kanit', sans-serif;
 }
 
 </style>

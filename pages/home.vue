@@ -43,6 +43,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Neonderthaw&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
 .home {
   background: url("~@/assets/patternpad.png");
   background-position: repeat;
@@ -50,7 +51,14 @@ export default {
 h1 {
   font-size: 4rem;
   text-align: center;
-  font-family: "Neonderthaw", cursive;
+  font-family: 'Train One', cursive;
+  padding: 10px 0;
+}
+@media (max-width: 425px){
+  h1{
+    font-size: 3.3rem;
+    line-height: 1;
+  }
 }
 img {
   max-width: 100%;
