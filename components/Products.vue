@@ -2,7 +2,7 @@
   <div class="products" v-if="this.products.length > 0">
     <h2>Most Recent Products</h2>
     <v-row class="pt-1 pb-1">
-      <v-col :cols="cols" v-for="product in products" :key="product.id">
+      <v-col class="d-flex" :cols="cols" v-for="product in products" :key="product.id">
         <v-card>
           <v-btn v-if="isAuth" fab small color="red" class="white--text btn-delete" @click="remove(product._id)">
             <v-icon>   
@@ -35,7 +35,6 @@
 import { getProducts, deleteProduct } from "../services";
 import {mdiDelete,} from '@mdi/js'
 export default {
-  
   data() {
     return {
       icons: {mdiDelete},

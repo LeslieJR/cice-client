@@ -42,11 +42,13 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Neonderthaw&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+
 .home {
   background: url("~@/assets/patternpad.png");
   background-position: repeat;
+  font-family: 'Kanit', sans-serif;
 }
 h1 {
   font-size: 4rem;

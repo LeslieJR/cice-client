@@ -41,7 +41,7 @@ export default {
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
-h2 {
+h2,p {
   font-family: 'Kanit', sans-serif;
 }
 </style> 

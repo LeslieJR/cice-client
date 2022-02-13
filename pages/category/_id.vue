@@ -4,7 +4,7 @@
     <p>{{ data.description }}</p>
     <v-row class="pt-1 pb-1">
       <v-col class="d-flex justify-center" v-for="(product, i) in data.products" :key="i">
-        <v-card width="300"  class="mb-2">
+        <v-card width="300"  class="mb-2" @click="getDetails(product._id)">
           <v-card-title class="card-text">
             {{ product.name }}
           </v-card-title>
@@ -36,12 +36,17 @@ export default {
     const data = await getProductsByCategory(params.id);
     return { data };
   },
+  methods:{
+    getDetails(productId) {
+      this.$router.push(`/details/${productId}`);
+    },
+  }
   
 };
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
-h1 {
+h1,p, .card-text {
   font-family: 'Kanit', sans-serif;
 }
 </style> 
