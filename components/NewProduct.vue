@@ -141,7 +141,8 @@ export default {
           this.category = "";
           this.price = "";
           this.images = [];
-          this.$refs.file.value = null;
+          this.$refs.file.reset();
+          
         }
       } catch (e) {
         console.log("error: ", e.message);
