@@ -2,11 +2,23 @@
   <div class="products" v-if="this.products.length > 0">
     <h2>Most Recent Products</h2>
     <v-row class="pt-1 pb-1">
-      <v-col class="d-flex" :cols="cols" v-for="product in products" :key="product.id">
+      <v-col
+        class="d-flex"
+        :cols="cols"
+        v-for="product in products"
+        :key="product.id"
+      >
         <v-card>
-          <v-btn v-if="isAuth" fab small color="red" class="white--text btn-delete" @click="remove(product._id)">
-            <v-icon>   
-              {{ icons.mdiDelete }} 
+          <v-btn
+            v-if="isAuth"
+            fab
+            small
+            color="red"
+            class="white--text btn-delete"
+            @click="remove(product._id)"
+          >
+            <v-icon>
+              {{ icons.mdiDelete }}
             </v-icon>
           </v-btn>
           <v-carousel
@@ -33,11 +45,11 @@
 </template>
 <script>
 import { getProducts, deleteProduct } from "../services";
-import {mdiDelete,} from '@mdi/js'
+import { mdiDelete } from "@mdi/js";
 export default {
   data() {
     return {
-      icons: {mdiDelete},
+      icons: { mdiDelete },
       products: [],
       onFetch: undefined,
     };
@@ -52,11 +64,12 @@ export default {
     clearInterval(this.onFetch);
   },
   computed: {
-    //only users who are logged in (have token) can delete products
-    isAuth() {
+    //only users who are logged in (have token) can delete products   
+      isAuth() {
+        console.log('***Products isAuth computed: '+this.$store.getters["user/getToken"])
       return this.$store.getters["user/getToken"];
-    },
-  
+    }, 
+
     cols() {
       switch (this.$vuetify.breakpoint.name) {
         case "xs":
@@ -80,15 +93,20 @@ export default {
     details(productId) {
       this.$router.push(`/details/${productId}`);
     },
-    async remove(productId){
-      console.log(productId);
-      await deleteProduct(productId)
-    }
+    async remove(productId) {
+      const token = localStorage.getItem("token");
+      const data = await deleteProduct(productId, token);
+      if (data.err) {
+        alert(data.err);
+      } else {
+        console.log('deleted')
+      }
+    },
   },
 };
 </script>
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
 .card-text {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -96,13 +114,11 @@ export default {
 }
 h2 {
   font-size: 2rem;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
 }
-.btn-delete{
-    position: absolute;
-    z-index: 9999;
-    right: 0;
-
+.btn-delete {
+  position: absolute;
+  z-index: 9999;
+  right: 0;
 }
-
 </style>

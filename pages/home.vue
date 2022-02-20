@@ -3,7 +3,7 @@
     <div>
       <h1 style="text-align: center">We are Ecos</h1>
       <v-img
-        v-if="$vuetify.breakpoint.smAndDown"
+        v-show="$vuetify.breakpoint.smAndDown"
         src="img/nature.jpg"
         alt="zero waste"
       />
@@ -32,32 +32,43 @@ export default {
   data() {
     return {};
   },
+
+  /*recargas blandas
+  asyncData(ctx) {
+    console.log("asyncData");
+    const isAuth = ctx.store.state.user.token;
+    return {
+      isAuth: isAuth,
+    };
+  },*/
+
   computed: {
-    //only users who are logged in (have token) can add products
+    //only users who are logged in (have token) can delete products
     isAuth() {
-      return this.$store.getters["user/getToken"];
+      console.log('***home isAuth computed: '+this.$store.getters["user/getToken"])
+      return this.$store.getters["user/getToken"]
     },
   },
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Train+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap");
 
 .home {
   background: url("~@/assets/patternpad.png");
   background-position: repeat;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
 }
 h1 {
   font-size: 4rem;
   text-align: center;
-  font-family: 'Train One', cursive;
+  font-family: "Train One", cursive;
   padding: 10px 0;
 }
-@media (max-width: 425px){
-  h1{
+@media (max-width: 425px) {
+  h1 {
     font-size: 3.3rem;
     line-height: 1;
   }

@@ -17,11 +17,11 @@ export const mutations = {
 export const actions = {
   saveToken(context, value) {
     context.commit("setToken", value);
-    //localStorage.setItem("token", value);
+    localStorage.setItem("token", value);
   },
 
   removeToken(context) {
     context.commit("setToken", null);
-    //localStorage.clear();
+    localStorage.clear();
   },
 };

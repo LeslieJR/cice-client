@@ -123,12 +123,15 @@ export default {
     },
     async onClick() {
       try {
+        const token = this.$store.getters["user/getToken"];
+        console.log(token)
         const data = await createProduct(
           this.name,
           this.description,
           this.category,
           this.price,
-          this.images
+          this.images,
+          token
         );
         if (data.err) {
           alert(data.err);

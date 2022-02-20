@@ -7,7 +7,7 @@
       <v-spacer></v-spacer>
       <div>
         <v-dialog
-          v-if="!isAuth"
+          v-if="isAuth =='' || isAuth == null"
           v-model="dialog"
           max-width="600px"
           min-width="250px"
@@ -26,7 +26,7 @@
               dark
               grow
             >
-              <v-tabs-slider color="orange"></v-tabs-slider>
+              <v-tabs-slider color="orange darken-4"></v-tabs-slider>
               <v-tab v-for="(tab, i) in tabs" :key="i">
                 <v-icon medium>{{ tab.icon }}</v-icon>
                 <div class="caption py-1">{{ tab.name }}</div>
@@ -64,7 +64,7 @@
                       </v-card-text>
                     </v-container>
                     <v-card-actions>
-                      <v-btn @click="onLogin"> Login </v-btn>
+                      <v-btn class="white--text green lighten-1" @click="onLogin"> Login </v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -127,7 +127,7 @@
                       </v-card-text>
                     </v-container>
                     <v-card-actions>
-                      <v-btn @click="onRegister">Register</v-btn>
+                      <v-btn class="white--text green lighten-1" @click="onRegister" >Register</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-form>
@@ -148,7 +148,6 @@ import { signIn, signUp } from "../services";
 export default {
   data() {
     return {
-      token: null,
       loginEmail: "",
       loginPassword: "",
       first_name: "",
@@ -176,12 +175,6 @@ export default {
       ],
     };
   },
-  asyncData(ctx) {
-    const token = ctx?.store.state.user.token;
-    if (token) {
-      ctx.redirect("/home");
-    }
-  },
   methods: {
     validateEmail(email) {
       let emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -206,13 +199,13 @@ export default {
         if (data.err) {
           alert(data.err);
         } else {
-          localStorage.setItem("email", data.email);
+          console.log('user/saveToken: '+data.token)
           this.$store.dispatch("user/saveToken", data.token);
           this.dialog = false;
           this.loginEmail = "";
           this.loginPassword = "";
+          console.log('check localStorage')
           this.$swal("Success!", "You are now logged in", "success");
-          /*  this.$router.push("/home"); */
         }
       } catch (err) {
         alert(err.message);
@@ -268,20 +261,17 @@ export default {
       }
     },
   },
-  /* watch: {
-    "$store.state.user.token"(value) {
-      if (value) {
-        this.token = value;
-      }
-    },
-  }, */
   computed: {
-    isAuth() {
+     isAuth() {
+      console.log('***NavBar isAuth computed: '+this.$store.getters["user/getToken"])
+      const token = this.$store.getters["user/getToken"];
+      if(token==''){console.log(true)}
       return this.$store.getters["user/getToken"];
-    },
+    }, 
     passwordMatch() {
       return () => this.password === this.password2 || "Password must match";
     },
+    
   },
 };
 </script>
@@ -289,4 +279,5 @@ export default {
 .v-card__actions {
   justify-content: center;
 }
+
 </style>

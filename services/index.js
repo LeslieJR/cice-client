@@ -42,7 +42,8 @@ export const createProduct = async (
   description,
   category,
   price,
-  images
+  images,
+  token
 ) => {
   const body = {
     name,
@@ -55,6 +56,8 @@ export const createProduct = async (
     method: "post",
     headers: {
       "Content-Type": "application/json",
+      token
+      
     },
     body: JSON.stringify(body),
   });
@@ -79,11 +82,12 @@ export const getDetails = async (product_id) => {
   return res.json();
 };
 
-export const deleteProduct = async (product_id) => {
+export const deleteProduct = async (product_id, token) => {
   const res = await fetch(`${HOSTNAME}/api/product/remove/${product_id}`, {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      token
     },
   });
   return res.json();
