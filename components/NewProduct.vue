@@ -142,7 +142,7 @@ export default {
           this.price = "";
           this.images = [];
           this.$refs.file.reset();
-          
+          this.selected=null
         }
       } catch (e) {
         console.log("error: ", e.message);
