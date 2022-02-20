@@ -32,20 +32,9 @@ export default {
   data() {
     return {};
   },
-
-  /*recargas blandas
-  asyncData(ctx) {
-    console.log("asyncData");
-    const isAuth = ctx.store.state.user.token;
-    return {
-      isAuth: isAuth,
-    };
-  },*/
-
   computed: {
     //only users who are logged in (have token) can delete products
     isAuth() {
-      console.log('***home isAuth computed: '+this.$store.getters["user/getToken"])
       return this.$store.getters["user/getToken"]
     },
   },

@@ -6,7 +6,7 @@
         <v-img cover :height="height" :src="image"></v-img>
       </v-col>
     </v-row>
-    <div class="d-flex justify-center">
+    <div class="d-flex justify-center mt-2">
       <p>{{ product.description }}</p>
     </div>
   </div>

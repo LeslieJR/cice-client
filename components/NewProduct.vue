@@ -99,7 +99,7 @@ export default {
         }
         this.categories = names;
       } catch (e) {
-        console.log("error: ", e.message);
+        alert("error: ", e.message);
       }
     },
     async upload(value) {
@@ -115,7 +115,7 @@ export default {
           };
         });
       } catch (e) {
-        console.log("error: ", e.message);
+        alert("error: ", e.message);
       }
     },
     onSelect(obj) {
@@ -124,7 +124,6 @@ export default {
     async onClick() {
       try {
         const token = this.$store.getters["user/getToken"];
-        console.log(token)
         const data = await createProduct(
           this.name,
           this.description,
@@ -145,7 +144,7 @@ export default {
           this.selected=null
         }
       } catch (e) {
-        console.log("error: ", e.message);
+        alert("error: ", e.message);
       }
     },
   },

@@ -199,12 +199,10 @@ export default {
         if (data.err) {
           alert(data.err);
         } else {
-          console.log('user/saveToken: '+data.token)
           this.$store.dispatch("user/saveToken", data.token);
           this.dialog = false;
           this.loginEmail = "";
           this.loginPassword = "";
-          console.log('check localStorage')
           this.$swal("Success!", "You are now logged in", "success");
         }
       } catch (err) {
@@ -232,7 +230,8 @@ export default {
         if (data.err) {
           alert(data.err);
         } else {
-          this.$swal("Success!", "You have registered successfully", "success");
+          this.tab = 0;
+          this.$swal("Success!", "You have registered successfully", "success");         
         }
       } catch (err) {
         alert(err.message);
@@ -263,9 +262,6 @@ export default {
   },
   computed: {
      isAuth() {
-      console.log('***NavBar isAuth computed: '+this.$store.getters["user/getToken"])
-      const token = this.$store.getters["user/getToken"];
-      if(token==''){console.log(true)}
       return this.$store.getters["user/getToken"];
     }, 
     passwordMatch() {

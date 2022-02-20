@@ -39,7 +39,7 @@ export default {
         const data = await getAllCategories();
         this.categories = data;
       } catch (e) {
-        console.log("error: ", e.message);
+        alert("error: ", e.message);
       }
     },
     browse(categoryId) {
