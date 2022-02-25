@@ -44,7 +44,7 @@
   </div>
 </template>
 <script>
-import { getProducts,deleteProduct } from "../services";
+import { getProducts, deleteProduct } from "../services";
 import { mdiDelete, mdiSquareEditOutline } from "@mdi/js";
 export default {
   data() {
@@ -56,7 +56,7 @@ export default {
       element: null,
     };
   },
-  
+
   async beforeMount() {
     await this.loadProducts();
     this.onFetch = setInterval(async () => {
@@ -91,7 +91,6 @@ export default {
       } catch (err) {}
     },
     editProduct(product) {
-      console.log(product);
       this.showDialog = true;
       this.element = product;
     },
@@ -113,16 +112,16 @@ h2 {
   font-size: 2rem;
   font-family: "Kanit", sans-serif;
 }
- .btn-delete {
+.btn-delete {
   position: absolute;
   z-index: 999;
   right: 0;
-  top:0;
+  top: 0;
 }
 .btn-edit {
   position: absolute;
   z-index: 999;
   right: 0;
   top: 42px;
-} 
+}
 </style>

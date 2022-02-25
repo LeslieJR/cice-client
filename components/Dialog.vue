@@ -7,7 +7,7 @@
           <v-text-field
             solo
             label="Product Name"
-            v-model="prodName"
+            v-model="name"
             clearable
             hide-details
           ></v-text-field>
@@ -16,7 +16,7 @@
           <v-textarea
             solo
             label="Description"
-            v-model="prodDescr"
+            v-model="descr"
             clearable
             hide-details
           ></v-textarea>
@@ -25,7 +25,7 @@
           <v-text-field
             solo
             label="Price"
-            v-model="prodPrice"
+            v-model="price"
             clearable
             hide-details
           ></v-text-field>
@@ -60,21 +60,6 @@ export default {
       set(value) {
         this.$emit("input", value);
       },
-    },
-    prodName() {
-      if (this.product) {
-        return this.name=this.product.name;
-      }
-    },
-    prodDescr() {
-      if (this.product) {
-        return this.descr=this.product.description;
-      }
-    },
-    prodPrice() {
-      if (this.product) {
-        return this.price=this.product.price;
-      }
     },
   },
 };
