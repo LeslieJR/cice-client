@@ -1,36 +1,24 @@
 <template>
   <v-dialog v-model="show" width="500" class="edit-form" :retain-focus="false">
     <v-card>
-      <v-card-title class="headline">Edit Product</v-card-title>
-      <v-row class="mx-0">
-        <v-col cols="12" sm="6">
-          <v-text-field
-            solo
-            label="Product Name"
-            v-model="name"
-            clearable
-            hide-details
-          ></v-text-field>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-textarea
-            solo
-            label="Description"
-            v-model="descr"
-            clearable
-            hide-details
-          ></v-textarea>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-text-field
-            solo
-            label="Price"
-            v-model="price"
-            clearable
-            hide-details
-          ></v-text-field>
-        </v-col>
-      </v-row>
+      <v-card-title class="headline text-center">Edit Product</v-card-title>
+      <v-col class="custom-padding">
+        <v-text-field
+          solo
+          label="Product Name"
+          clearable
+          hide-details
+          class="pb-2"
+        ></v-text-field>
+        <v-textarea
+          solo
+          label="Description"
+          clearable
+          hide-details
+          class="pb-2"
+        ></v-textarea>
+        <v-text-field solo label="Price" clearable hide-details></v-text-field>
+      </v-col>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="green darken-1" outlined text> Save </v-btn>
@@ -68,4 +56,8 @@ export default {
 .edit-form {
   z-index: 9999;
 }
+.custom-padding {
+  padding: 0px 24px 10px;
+}
+
 </style>

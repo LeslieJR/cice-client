@@ -91,6 +91,7 @@ export default {
       } catch (err) {}
     },
     editProduct(product) {
+      console.log(product);
       this.showDialog = true;
       this.element = product;
     },
